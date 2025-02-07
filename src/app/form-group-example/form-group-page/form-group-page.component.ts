@@ -17,7 +17,7 @@ formGroupData = new FormGroup({
         password: new FormControl('', [Validators.required, Validators.minLength(8)]),
         confirmPassword: new FormControl('', Validators.required),
         acceptTerms: new FormControl(false, Validators.requiredTrue),
-      },)
+      },{ validators: this.passwordMatchValidator })
   
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
