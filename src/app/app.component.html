@@ -1,28 +1,10 @@
-<nav class="mt-2">
+<!-- <nav class="mt-2">
   <button [routerLink]="['/form-group']" routerLinkActive="active">Form Group Page</button>
   <button [routerLink]="['/form-builder']" routerLinkActive="active">Form Builder Page</button>
-</nav>
-
-
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-darkgray">
-    <div class="container">
-        <a class="navbar-brand" href="#">My Website</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/form-group']" routerLinkActive="active"
-                        aria-current="page">Employee Form</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/form-builder']" routerLinkActive="active">Books Form</a>
-                </li>
-            </ul>
-        </div>
-    </div>
 </nav> -->
-
+<nav class="navbar">
+    <button routerLink="/form-group" class="nav-btn">FormGroup</button>
+    <button routerLink="/form-builder" class="nav-btn">FormBuilder</button>
+  </nav>
+  
 <router-outlet></router-outlet>

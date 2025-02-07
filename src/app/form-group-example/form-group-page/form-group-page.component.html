@@ -1,54 +1,55 @@
-<div class="d-flex mt-5 justify-content-center align-items-center vh-100">
-    <div class="container p-4 border rounded shadow" style="max-width: 400px; width: 100%;">
-      <form [formGroup]="formGroupData" (ngSubmit)="onSubmit()" class="">
-        <div class="mb-3">
-          <label for="fullName" class="form-label">Full Name</label>
-          <input type="text" id="fullName" class="form-control w-100" formControlName="fullName">
-        </div>
+<div class="d-flex mt-5 justify-content-center align-items-center vh-100 flex-column">
+  <h1>Form Group</h1>  
+  <div class="container p-4 border rounded shadow" style="max-width: 400px; width: 100%;">
+    <form [formGroup]="formGroupData" (ngSubmit)="onSubmit()" class="">
 
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" id="username" class="form-control w-100" formControlName="username">
-          <div *ngIf="formGroupData.get('username')?.invalid && formGroupData.get('username')?.touched" class="text-danger">
-            Username must be at least 6 characters
-          </div>
-        </div>
+      
+      <div class="mb-3">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input type="text" id="fullName" class="form-control w-100" formControlName="fullName">
+      </div>
 
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" id="email" class="form-control w-100" formControlName="email">
-          <div *ngIf="formGroupData.get('email')?.invalid && formGroupData.get('email')?.touched" class="text-danger">
-            Email is invalid
-          </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" class="form-control w-100" formControlName="username">
+        <div *ngIf="formGroupData.get('username')?.invalid && formGroupData.get('username')?.touched" class="text-danger">
+          Username must be at least 6 characters
         </div>
-  
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" id="password" class="form-control w-100" formControlName="password">
-        </div>
-  
-        <div class="mb-3">
-          <label for="confirmPassword" class="form-label">Confirm Password</label>
-          <input type="password" id="confirmPassword" class="form-control w-100" formControlName="confirmPassword">
-          <div *ngIf="formGroupData.hasError('mismatch') && formGroupData.get('confirmPassword')?.touched" class="text-danger">
-            Confirm Password does not match
-          </div>
-        </div>
-  
-        <div class="mb-3 form-check">
-          <input type="checkbox" id="terms" class="form-check-input" formControlName="acceptTerms">
-          <label for="terms" hid class="form-check-label">I have read and agree to the Terms</label>
-          <div *ngIf="formGroupData.get('acceptTerms')?.invalid && formGroupData.get('acceptTerms')?.touched" class="text-danger">
-            Accept Terms is required
-          </div>
-        </div>
-  
+      </div>
 
-        <div class="d-flex justify-content-between">
-            <button type="submit" [disabled]="formGroupData.invalid" class="btn p-2 px-2 btn-primary btn-sm">Register</button>
-            <button type="reset" [disabled]="formGroupData.untouched" class="btn p-2 px-2 btn-warning btn-sm" (click)="resetForm()">Reset</button>
-          </div>
-      </form>
-    </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control w-100" formControlName="email">
+        <div *ngIf="formGroupData.get('email')?.invalid && formGroupData.get('email')?.touched" class="text-danger">
+          Email is invalid
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control w-100" formControlName="password">
+      </div>
+
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="form-control w-100" formControlName="confirmPassword">
+        <div *ngIf="formGroupData.hasError('mismatch') && formGroupData.get('confirmPassword')?.touched" class="text-danger">
+          Confirm Password does not match
+        </div>
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" id="terms" class="form-check-input" formControlName="acceptTerms">
+        <label for="terms" class="form-check-label">I have read and agree to the Terms</label>
+        <div *ngIf="formGroupData.get('acceptTerms')?.invalid && formGroupData.get('acceptTerms')?.touched" class="text-danger">
+          Accept Terms is required
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button type="submit" [disabled]="formGroupData.invalid" class="btn p-2 px-2 btn-primary btn-sm">Register</button>
+        <button type="reset" [disabled]="formGroupData.untouched" class="btn p-2 px-2 btn-warning btn-sm" (click)="resetForm()">Reset</button>
+      </div>
+    </form>
   </div>
-  
+</div>
