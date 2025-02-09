@@ -17,6 +17,8 @@ import {
   styleUrls: ['./form-builder-page.component.css'],
 })
 export class FormBuilderPageComponent {
+  private userData:unknown[]| undefined;
+  formTitle = 'Form Builder'
   formGroupData: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -46,7 +48,8 @@ export class FormBuilderPageComponent {
       alert('Form Submitted Successfully!');
       console.log(this.formGroupData.value);
       console.log(this.formGroupData)
-      this.formGroupData.reset();
+      this.userData?.push(this.formGroupData.value)
+      localStorage.setItem('form-data',JSON.stringify(this.userData))
     }
   }
 }

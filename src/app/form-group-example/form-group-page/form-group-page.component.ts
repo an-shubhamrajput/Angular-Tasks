@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
 @Component({
   selector: 'app-form-group-page',
@@ -9,7 +9,9 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators, AbstractContro
   styleUrls: ['./form-group-page.component.css'],
 })
 
+
 export class FormGroupPageComponent {  
+  formTitle = signal('Form Group');
 formGroupData = new FormGroup({
         fullName: new FormControl('', Validators.required),
         username: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -17,6 +19,7 @@ formGroupData = new FormGroup({
         password: new FormControl('', [Validators.required, Validators.minLength(8)]),
         confirmPassword: new FormControl('', Validators.required),
         acceptTerms: new FormControl(false, Validators.requiredTrue),
+        dateDate: new FormControl(new Date().toISOString(),Validators.required)
       },{ validators: this.passwordMatchValidator })
   
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
@@ -32,7 +35,9 @@ formGroupData = new FormGroup({
     if (this.formGroupData.valid) {
       alert('Form Submitted Successfully!');
       console.log(this.formGroupData);
-      this.formGroupData.reset();
+      localStorage.setItem('form-data',JSON.stringify(this.formGroupData.value))
     }
   }
+
+
 }
