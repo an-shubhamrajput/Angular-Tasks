@@ -8,8 +8,6 @@ export const routes: Routes = [
     {path:'',redirectTo:'/form-group',pathMatch:'full'},
     { path: 'form-group', component: FormGroupPageComponent },
     { path: 'form-builder', component: FormBuilderPageComponent },
-    {
-        path:'dynamic-form', component:DynamicFormComponent
-    }
+    {path:'dynamic-form', component:DynamicFormComponent}
 ];
 
