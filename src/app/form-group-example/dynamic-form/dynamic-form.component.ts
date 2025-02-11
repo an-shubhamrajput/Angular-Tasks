@@ -14,7 +14,7 @@ import { FormArray } from '@angular/forms';
 
 export class DynamicFormComponent {
   companyData: FormGroup;
-
+  formsData: any[] = [] 
   constructor(private fb: FormBuilder) {
     this.companyData = this.fb.group({
       companyName: ['', Validators.required],
@@ -25,6 +25,7 @@ export class DynamicFormComponent {
         zip: [''],
       }),
       units: this.fb.array([]),
+      total:[0]
     });
     this.addunit();
   }
@@ -70,6 +71,7 @@ export class DynamicFormComponent {
     }
 
     console.log(totalAmount);
+    this.companyData.patchValue({total:totalAmount})
     return totalAmount;
   }
 
@@ -80,6 +82,8 @@ export class DynamicFormComponent {
   onSubmit() {
     if (this.companyData.valid) {
       alert('Form Submitted Successfully!');
+      this.formsData.push(this.companyData.value)
+      // this.formsData = this.companyData.value;
       console.log(this.companyData.value);
       this.totalPrice();
 

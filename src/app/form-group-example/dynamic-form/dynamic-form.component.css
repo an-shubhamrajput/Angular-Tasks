@@ -6,6 +6,7 @@ input{
     background-color: transparent;      
 }
 
+
 input:focus {
   background-color: transparent;
     outline: solid;
