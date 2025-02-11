@@ -4,10 +4,12 @@ import { FormGroupPageComponent } from './form-group-example/form-group-page/for
 import { FormBuilderPageComponent } from './form-group-example/form-builder-page/form-builder-page.component';
 
 import { DynamicFormComponent } from './form-group-example/dynamic-form/dynamic-form.component';
+import { CompanyListDataComponent } from './pages/company-list-data/company-list-data.component';
 export const routes: Routes = [
     {path:'',redirectTo:'/form-group',pathMatch:'full'},
     { path: 'form-group', component: FormGroupPageComponent },
     { path: 'form-builder', component: FormBuilderPageComponent },
-    {path:'dynamic-form', component:DynamicFormComponent}
+    {path:'dynamic-form', component:DynamicFormComponent},
+    {path:'company-data',component:CompanyListDataComponent}
 ];
 

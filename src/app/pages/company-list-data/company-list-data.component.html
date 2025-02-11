@@ -1,0 +1,43 @@
+<div class="container mt-5 table-responsive">
+    <h4 class="text-secondary">Company Data</h4>
+    
+    <table class="table table-bordered  table-striped mt-4" *ngIf="companyData">
+        <thead class="table-dark">
+            <tr>
+                <th>Company Name</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>Zip Code</th>
+                <th>Units Details</th>
+                <th>Total Price</th>
+                <th>update Data</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let data of  companyData; let i = index">
+            <tr class="p-5">
+                <td>{{ data.companyName }}</td>
+                <td>{{ data.address.country }}</td>
+                <td>{{ data.address.city }}</td>
+                <td>{{ data.address.street || 'street' }}</td>
+                <td>{{ data.address.zip }}</td>
+                <td>
+                    <ul *ngFor="let unit of data.units">
+                        <li>{{ unit.unitName }} : {{ unit.quantity }} x {{ unit.unitPrice }}</li>
+                    </ul>
+                </td>
+
+                <td>
+                    {{data.total}}
+                </td>
+                <td>
+                    <!-- <button routerLink="/dynamic-form"  class="btn btn-success">update</button> -->
+                    <button (click)="getCompanyDataIndex(i)" class="btn btn-success">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button  class="btn btn-danger mt-3"  (click)="clearData()">Clear Data</button>
+    <button routerLink="/dynamic-form"  class="btn btn-success mt-3 mx-3">Add Data</button>
+</div>
