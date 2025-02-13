@@ -12,6 +12,7 @@
                 <th>Units Details</th>
                 <th>Total Price</th>
                 <th>update Data</th>
+                <th>Delete Data</th>
             </tr>
         </thead>
         <tbody *ngFor="let data of  companyData; let i = index">
@@ -33,6 +34,10 @@
                 <td>
                     <!-- <button routerLink="/dynamic-form"  class="btn btn-success">update</button> -->
                     <button (click)="getCompanyDataIndex(i)" class="btn btn-success">Update</button>
+                </td>
+                <td>
+                    <!-- <button routerLink="/dynamic-form"  class="btn btn-success">update</button> -->
+                    <button (click)="deleteCompanyData(i)" class="btn btn-success">Delete</button>
                 </td>
             </tr>
         </tbody>

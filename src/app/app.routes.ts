@@ -5,11 +5,19 @@ import { FormBuilderPageComponent } from './form-group-example/form-builder-page
 
 import { DynamicFormComponent } from './form-group-example/dynamic-form/dynamic-form.component';
 import { CompanyListDataComponent } from './pages/company-list-data/company-list-data.component';
+import { DynamicFormAPIComponent } from './pages/dynamic-form-api/dynamic-form-api.component';
+
+import { CompanyApiDataDisplayComponent } from './pages/company-api-data-display/company-api-data-display.component';
 export const routes: Routes = [
     {path:'',redirectTo:'/form-group',pathMatch:'full'},
     { path: 'form-group', component: FormGroupPageComponent },
     { path: 'form-builder', component: FormBuilderPageComponent },
     {path:'dynamic-form', component:DynamicFormComponent},
-    {path:'company-data',component:CompanyListDataComponent}
+    {path:'company-data',component:CompanyListDataComponent},
+
+    // routes for dynmaic form data send through HTTPClient 
+    {path:'dynamic-api',component:DynamicFormAPIComponent},
+    {path:'api-companyData',component:CompanyApiDataDisplayComponent}
+
 ];
 

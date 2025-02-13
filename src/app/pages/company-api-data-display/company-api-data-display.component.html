@@ -1,0 +1,45 @@
+<div class="container mt-5 table-responsive">
+    <h4 class="text-secondary">Company Data</h4>
+    
+    <table class="table table-bordered table-striped mt-4" *ngIf="companyData.length">
+        <thead class="table-dark">
+            <tr>
+                <th>Company Name</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Street</th>
+                <th>Zip Code</th>
+                <th>Units Details</th>
+                <th>Total Price</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let data of companyData; let i = index">
+            <tr>
+                <td>{{ data.companyName }}</td>
+                <td>{{ data.address.country }}</td>
+                <td>{{ data.address.city }}</td>
+                <td>{{ data.address.street || 'N/A' }}</td>
+                <td>{{ data.address.zip }}</td>
+                <td>
+                    <ul *ngIf="data.units">
+                        <li *ngFor="let unit of data.units">
+                            {{ unit.unit_name }}: {{ unit.quantity }} x {{ unit.unit_price }}
+                        </li>
+                    </ul>
+                </td>
+                <td>{{ data.total }}</td>
+                <td>
+                    <button (click)="getCompanyDataIndex(data.id)" class="btn btn-success">Update</button>
+                </td>
+                <td>
+                    <button (click)="deleteCompanyData(data.id)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-danger " (click)="clearData()">Clear All</button>
+    <button routerLink="/dynamic-api" class="btn btn-success  mx-3">Add Data</button>
+</div>

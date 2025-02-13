@@ -28,6 +28,7 @@ export class DynamicFormComponent {
       units: this.fb.array([]),
       total: [0],
     });
+    this.addUnit(),
     this.getparamId();
   }
 

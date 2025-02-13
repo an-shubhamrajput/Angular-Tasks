@@ -34,11 +34,25 @@ export class CompanyListDataComponent implements OnInit {
 
   }
 
+
+  deleteCompanyData(i:number):void{
+    alert('are surre to deleye')
+    
+    // if(localData){
+    //   this.companyData = JSON.parse(localData)
+    //   console.log(this.companyData)
+
+    //   S
+    // }
+
+    
+  }
+
   clearData():void{
     let deleteData = confirm('are you sure to delete all data?')
     if(deleteData){
       localStorage.removeItem('companyData')
-      this.companyData = []
+      this.companyData
       return;
     }
   
