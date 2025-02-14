@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } fr
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CompanyService } from '../../services/company.service';
 import { CommonModule } from '@angular/common';
-
+import Company from '../../model/Company.Interfcae';
 @Component({
   selector: 'app-dynamic-form-api',
   standalone: true,
