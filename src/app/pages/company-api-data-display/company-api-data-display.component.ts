@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CompanyService } from '../../services/company.service'; 
 import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-company-api-data-display',
   standalone: true,
@@ -13,7 +14,7 @@ import { RouterLink } from '@angular/router';
 export class CompanyApiDataDisplayComponent implements OnInit {
   companyData: any[] = [];
 
-  constructor(private router: Router, private companyService: CompanyService) {}
+  constructor(private router: Router, private companyService: CompanyService,  private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.fetchCompanyData();
@@ -23,6 +24,8 @@ export class CompanyApiDataDisplayComponent implements OnInit {
     this.companyService.getCompanies().subscribe({
       next: (data) => {
         this.companyData = data;
+        this.toastr.success('Company data loaded Successfully', 'data fetched');
+
         console.log('Fetched Company Data:', this.companyData);
       },
       error: (err) => console.error('Error fetching data:', err),
@@ -39,10 +42,12 @@ export class CompanyApiDataDisplayComponent implements OnInit {
     if (confirmDelete) {
       this.companyService.deleteCompany(id).subscribe({
         next: () => {
-          alert('Company deleted successfully');
+          this.toastr.success('Company data deleted Successfully', 'Delete Successfully');
           this.fetchCompanyData(); 
         },
-        error: (err) => console.error('Error deleting company:', err),
+        error: (err) =>{
+          this.toastr.error(err.message, 'error while deleting');
+        } 
       });
     }
   }
@@ -51,8 +56,17 @@ export class CompanyApiDataDisplayComponent implements OnInit {
     const confirmClear = confirm('Are you sure you want to delete all data?');
     if (confirmClear) {
       this.companyData.forEach((company) => {
-        this.companyService.deleteCompany(company.id).subscribe();
+        
+        this.companyService.deleteCompany(company.id).subscribe(()=>{
+          this.toastr.success('all Company data deleted', 'all Data Deleted Successfully');
+        },
+        err=>{
+          this.toastr.error(err.message);
+
+        });
+        
       });
+      
       this.companyData = [];
     }
   }

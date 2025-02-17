@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder,FormGroup,Validators,FormArray,ReactiveFormsModule,} from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
@@ -16,7 +16,7 @@ export class DynamicFormComponent {
   company:any[] = []
   currentIndex: number | any = null;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute,private toastr:ToastrService) {
     this.companyData = this.fb.group({
       companyName: ['', Validators.required],
       address: this.fb.group({
@@ -129,7 +129,7 @@ export class DynamicFormComponent {
 
   onSubmit() {
     if (this.companyData.valid) {
-      alert('Form Submitted Successfully!');
+      this.toastr.success('Form Submitted Successfully!', 'Submitted');
 
       const storedData = localStorage.getItem('companyData');
       let existingData = storedData ? JSON.parse(storedData) : [];

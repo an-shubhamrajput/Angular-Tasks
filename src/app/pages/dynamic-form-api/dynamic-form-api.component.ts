@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CompanyService } from '../../services/company.service';
 import { CommonModule } from '@angular/common';
 import Company from '../../model/Company.Interfcae';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-dynamic-form-api',
   standalone: true,
@@ -12,14 +13,17 @@ import Company from '../../model/Company.Interfcae';
   styleUrls: ['./dynamic-form-api.component.css']
 })
 export class DynamicFormAPIComponent implements OnInit {
+
+
   companyData!: FormGroup;
   companyId: number | null = null;
-
+  
   constructor(
     private fb: FormBuilder,
     private companyService: CompanyService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.companyData = this.fb.group({
       companyName: ['', Validators.required],
@@ -87,7 +91,8 @@ export class DynamicFormAPIComponent implements OnInit {
         console.log('Fetched Company Data:', company);
   
         if (!company) {
-          console.error('Company not found!');
+          this.toastr.warning('Company not found');
+          // console.error('Company not found!');
           return;
         }
   
@@ -114,6 +119,8 @@ export class DynamicFormAPIComponent implements OnInit {
           });
         }
       }, error => {
+        this.toastr.error(error.message);
+
         console.error('Error fetching company data:', error);
       });
     }
@@ -128,14 +135,15 @@ export class DynamicFormAPIComponent implements OnInit {
 
     if (this.companyId !== null) {
       this.companyService.updateCompany(this.companyId, formData).subscribe(response => {
-        alert('Company Updated Successfully');
         console.log('Company Updated:', response);
+        this.toastr.success('Company data Updated', 'Updated');
         this.router.navigate(['/api-companyData']); 
       });
     } else {
       console.log(formData)
       this.companyService.addCompany(formData).subscribe(response => {
-        alert('Company Added Successfully');
+        // alert('Company Added Successfully');
+        this.toastr.success('Company added Successfully', 'Submitted');
         console.log('Company Added:', response)
         this.companyData.reset()
       });

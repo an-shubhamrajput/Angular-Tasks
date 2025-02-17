@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import {
   FormGroup,
   ReactiveFormsModule,
@@ -21,7 +22,7 @@ export class FormBuilderPageComponent {
   formTitle = 'Form Builder'
   formGroupData: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private toastr:ToastrService) {
     this.formGroupData = this.fb.group({
         fullName: ['', Validators.required],
         username: ['', [Validators.required, Validators.minLength(6)]],
@@ -45,7 +46,7 @@ export class FormBuilderPageComponent {
 
   onSubmit() {
     if (this.formGroupData.valid) {
-      alert('Form Submitted Successfully!');
+      this.toastr.success('Form Submitted Successfully!', 'Submitted');
       console.log(this.formGroupData.value);
       console.log(this.formGroupData)
       this.userData?.push(this.formGroupData.value)
