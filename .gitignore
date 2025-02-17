@@ -1,4 +1,6 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Ignore environment files
+src/environments/environment*.ts
 
 # Compiled output
 /dist
@@ -8,7 +10,7 @@
 
 # Node
 /node_modules
-npm-debug.log
+npm-debug.logsseeeeeeeeee 
 yarn-error.log
 
 # IDEs and editors
